@@ -3,6 +3,8 @@ service: aws-shop-cart-api
 plugins:
   - serverless-offline
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs14.x
