@@ -6,10 +6,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Status } from '../../shared/enums/status';
-import { CartItem } from './cartItem.entity';
+import { CartItems } from './cartItem.entity';
 
 @Entity({ name: 'carts' })
-export class Cart {
+export class Carts {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -26,9 +26,9 @@ export class Cart {
   status: Status;
 
   @OneToMany(
-    () => CartItem,
+    () => CartItems,
     cartItem => cartItem.cartId,
   )
   @JoinColumn({ name: 'id', referencedColumnName: 'cartId' })
-  items: CartItem[];
+  items: CartItems[];
 }

@@ -1,19 +1,17 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Cart } from './cart.entity';
+import { Carts } from './cart.entity';
 
-type Status = 'OPEN' | 'ORDERED';
-
-@Entity({ name: 'cart_items' })
-export class CartItem {
+@Entity()
+export class CartItems {
   @PrimaryColumn({ type: 'uuid', nullable: false })
   productId: string;
 
   @ManyToOne(
-    () => Cart,
+    () => Carts,
     cart => cart.id,
   )
   @Column({ type: 'uuid', nullable: false })
-  cartId: Cart;
+  cartId: Carts;
 
   @Column({ type: 'int', nullable: false })
   count: number;

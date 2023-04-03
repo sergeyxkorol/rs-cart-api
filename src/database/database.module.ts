@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { Cart } from './entities/cart.entity';
-import { CartItem } from './entities/cartItem.entity';
+import { Carts } from './entities/cart.entity';
+import { CartItems } from './entities/cartItem.entity';
 
 @Module({
   imports: [
@@ -23,13 +23,14 @@ import { CartItem } from './entities/cartItem.entity';
          * Should be omitted for production production.
          */
         logging: true,
+        synchronize: true,
         /**
          * This naming strategy will map field_name from database to fieldName inside application.
          */
         namingStrategy: new SnakeNamingStrategy(),
       }),
     }),
-    TypeOrmModule.forFeature([Cart, CartItem]),
+    TypeOrmModule.forFeature([Carts, CartItems]),
   ],
   exports: [TypeOrmModule],
 })

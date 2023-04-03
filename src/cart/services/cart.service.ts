@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Cart as CartEntity } from '../../database/entities/cart.entity';
-import { CartItem as CartItemEntity } from '../../database/entities/cartItem.entity';
+import { Carts as CartEntity } from '../../database/entities/cart.entity';
+import { CartItems as CartItemEntity } from '../../database/entities/cartItem.entity';
 import { Status } from '../../shared/enums/status';
 import { getCurrentDate } from '../../utils/date';
 import { Cart, CartItem } from '../models';
@@ -20,11 +20,11 @@ export class CartService {
 
   async findByUserId(userId: string): Promise<Cart> {
     const cart = await this.cartRepository.findOne({
-      where: { userId, status: Status.OPEN },
+      where: { userId },
       relations: ['items'],
     });
 
-    const cartItems: CartItem[] = cart.items.map((item, idx) => {
+    const cartItems: CartItem[] = cart?.items?.map((item, idx) => {
       const cartItem: CartItem = {
         product: {
           id: item.productId,
@@ -39,8 +39,8 @@ export class CartService {
     });
 
     return {
-      id: cart.id,
-      items: cartItems,
+      id: cart?.id,
+      items: cartItems || [],
     };
   }
 
