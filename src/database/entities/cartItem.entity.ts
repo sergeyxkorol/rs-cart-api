@@ -3,7 +3,7 @@ import { Cart } from './cart.entity';
 
 type Status = 'OPEN' | 'ORDERED';
 
-@Entity()
+@Entity({ name: 'cart_items' })
 export class CartItem {
   @Column({ type: 'uuid', nullable: false })
   productId: string;

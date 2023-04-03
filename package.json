@@ -6,7 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "serverless:offline": "npx serverless offline",
+    "serverless:deploy": "npx sls deploy",
+    "serverless:offline": "sls offline --httpPort 3001",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

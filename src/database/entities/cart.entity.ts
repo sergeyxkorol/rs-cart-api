@@ -1,8 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Status } from '../../shared/enums/status';
+import { CartItem } from './cartItem.entity';
 
-type Status = 'OPEN' | 'ORDERED';
-
-@Entity()
+@Entity({ name: 'carts' })
 export class Cart {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -16,6 +22,13 @@ export class Cart {
   @Column({ type: 'date', nullable: false })
   updatedAt: string;
 
-  @Column({ type: 'enum', nullable: false, enum: ['OPEN', 'ORDERED'] })
+  @Column({ type: 'enum', nullable: false, enum: Status })
   status: Status;
+
+  @OneToMany(
+    () => CartItem,
+    cartItem => cartItem.cartId,
+  )
+  @JoinColumn({ name: 'id', referencedColumnName: 'cartId' })
+  items: CartItem[];
 }
