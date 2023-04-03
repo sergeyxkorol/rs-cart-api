@@ -1,11 +1,11 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Cart } from './cart.entity';
 
 type Status = 'OPEN' | 'ORDERED';
 
 @Entity({ name: 'cart_items' })
 export class CartItem {
-  @Column({ type: 'uuid', nullable: false })
+  @PrimaryColumn({ type: 'uuid', nullable: false })
   productId: string;
 
   @ManyToOne(

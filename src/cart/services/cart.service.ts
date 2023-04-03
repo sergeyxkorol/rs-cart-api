@@ -10,11 +10,11 @@ import { Cart, CartItem } from '../models';
 
 @Injectable()
 export class CartService {
-  private userCarts: Record<string, Cart> = {};
-
   constructor(
     @InjectRepository(CartEntity)
     private readonly cartRepository: Repository<CartEntity>,
+
+    @InjectRepository(CartItemEntity)
     private readonly cartItemRepository: Repository<CartItemEntity>,
   ) {}
 
