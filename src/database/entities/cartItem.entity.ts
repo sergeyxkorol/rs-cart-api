@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Carts } from './cart.entity';
 
 @Entity()
@@ -8,9 +8,9 @@ export class CartItems {
 
   @ManyToOne(
     () => Carts,
-    cart => cart.id,
+    cart => cart.items,
   )
-  @Column({ type: 'uuid', nullable: false })
+  @JoinColumn({ name: 'cart_id', referencedColumnName: 'id' })
   cartId: Carts;
 
   @Column({ type: 'int', nullable: false })
