@@ -97,7 +97,7 @@ export class CartController {
       items,
       total,
     });
-    // await this.cartService.removeByUserId(userId);
+    await this.cartService.removeByUserId(userId);
 
     return {
       statusCode: HttpStatus.OK,

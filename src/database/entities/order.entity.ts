@@ -29,10 +29,10 @@ export class Order {
   cartId: string;
 
   @Column({ type: 'json', nullable: false })
-  payment: string;
+  payment: JSON;
 
   @Column({ type: 'json', nullable: false })
-  delivery: string;
+  delivery: JSON;
 
   @Column({ type: 'text' })
   comments: string;
