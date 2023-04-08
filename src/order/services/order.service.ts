@@ -5,6 +5,7 @@ import { EntityManager, Repository } from 'typeorm';
 
 import { Order as OrderEntity } from '../../database/entities/order.entity';
 import { Order } from '../models';
+import { Status } from 'src/shared/enums/status';
 
 @Injectable()
 export class OrderService {
@@ -41,7 +42,7 @@ export class OrderService {
     const order = {
       ...data,
       id,
-      status: 'inProgress',
+      status: Status.IN_PROGRESS,
     } as OrderEntity;
 
     await this.orderRepository.manager.transaction(
