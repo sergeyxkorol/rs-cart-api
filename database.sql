@@ -33,3 +33,11 @@ CREATE TABLE orders (
   status statuses,
   total INT
 );
+
+
+-- Fill tables
+INSERT INTO carts (user_id, created_at, updated_at, status) 
+  VALUES ('23e551c7-2e8a-402d-840b-30a6baccd2cb', '2023-04-08', '2023-04-08', 'OPEN');
+
+INSERT INTO cart_items (cart_id, product_id, count) 
+  VALUES ('c8867c20-c2de-4766-a18a-a06bc347465b', 'c8867c2a-c2de-4766-a18a-a06bc347465f', 1);
